@@ -16,6 +16,9 @@ void draw() {
   for(int i=0 ; i<nbBalls-1 ; i++) {
     //System.out.println(i);
     balls[i].bounce();
+    
+  }
+  for (int i=0 ; i<nbBalls-1 ; i++) {
     for(int j=i+1 ; j<nbBalls ; j++) {
       // System.out.println(i);
       balls[i].link(balls[j]);
@@ -70,6 +73,6 @@ class Ball {
   void display() {
     noStroke();
     fill(r,g,b,140);
-    ellipse(posX,posY,diam,diam);
+    circle(posX,posY,diam);
   }
 }
