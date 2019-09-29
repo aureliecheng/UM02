@@ -11,39 +11,34 @@ void setup() {
 
 void draw() {
   background(255,250,250);
-  strokeWeight(10);
-  stroke(126);
-  for(int i=0 ; i<nbBalls-1 ; i++) {
-    //System.out.println(i);
+  
+  for(int i=0 ; i<nbBalls ; i++) {
     balls[i].bounce();
-    
+    balls[i].display();
   }
+  
   for (int i=0 ; i<nbBalls-1 ; i++) {
     for(int j=i+1 ; j<nbBalls ; j++) {
-      // System.out.println(i);
+      strokeWeight(10);
+      stroke(126);
       balls[i].link(balls[j]);
     }
-    balls[i].display();
   }
 }
 
 class Ball {
-  float posX;
-  float posY;
+  float posX, posY;
   float diam;
-  float speedX;
-  float speedY;
-  float r;
-  float g;
-  float b;
+  float speedX, speedY;
+  float r, g, b;
   float distance;
   
   Ball() {
     posX = random(width);
     posY = random(height);
     diam = 50;
-    speedX = random(2,4);
-    speedY = random(2,4);
+    speedX = random(1,3);
+    speedY = random(1,3);
     r = random(255);
     g = random(255);
     b = random(255);
