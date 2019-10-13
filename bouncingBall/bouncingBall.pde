@@ -15,12 +15,12 @@ void draw() {
   for(int i=0 ; i<nbBalls ; i++) {
     balls[i].bounce();
     balls[i].display();
+    // collect all balls with the mouse when its pressed
+    balls[i].collect();
   }
   
   for (int i=0 ; i<nbBalls-1 ; i++) {
     for(int j=i+1 ; j<nbBalls ; j++) {
-      strokeWeight(10);
-      stroke(126);
       balls[i].link(balls[j]);
     }
   }
@@ -31,7 +31,6 @@ class Ball {
   float diam;
   float speedX, speedY;
   float r, g, b;
-  float distance;
   
   Ball() {
     posX = random(width);
@@ -58,10 +57,20 @@ class Ball {
   }
   
   void link(Ball b2) {
+    strokeWeight(10);
+    stroke(126);
     // distance between two balls
-    distance = sqrt(pow(posX-b2.posX,2)+pow(posY-b2.posY,2));
-    if(distance < minDistance) {
+    if(dist(posX, posY, b2.posX, b2.posY) < minDistance) {
       line(posX, posY, b2.posX, b2.posY);
+    }
+  }
+
+  void collect() {
+    if(mousePressed == true) {
+      if(dist(mouseX, mouseY, posX, posY) < 60) {
+      posX = mouseX;
+      posY = mouseY;
+      }
     }
   }
   
