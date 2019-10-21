@@ -1,9 +1,13 @@
 Table table;
 Ball[] balls;
 int limit = 20;
+color currentColor;
+color isClicked = color(205,92,92);
+color notClicked = color(178,34,34);
+color defaultColor = color(211,211,211);
 
 void setup() {
-  size(640, 540);
+  size(1000, 740);
   loadData();
 }
 
@@ -31,8 +35,37 @@ void draw() {
     b.display();
     b.bounce();
   }
+  // BONUS: button to show all the characters from the House Lannister
+  fill(currentColor);
+  rect(30, 680, 100,40);
+  fill(255);
+  // TO DO : clean calcul of the text's position
+  text("Lannister", 60, 700);
+  textAlign(CENTER);
 }
 
+void mousePressed() {
+  if(rectOver(30, 680, 100, 40)){
+    if(currentColor == isClicked) {
+      currentColor = notClicked;
+      // change ball colours
+      
+    }
+    else {
+      currentColor = isClicked;
+    }
+  }
+}
+
+
+boolean rectOver(int x, int y, int width, int height){
+  if (mouseX >= x && mouseX <= x+width && mouseY >= y && mouseY <= y+height) {
+    return true;
+  } 
+  else {
+    return false;
+  }  
+}
 
 class Ball {
   float posX, posY;
@@ -48,9 +81,6 @@ class Ball {
     name = n;
     speedX = random(1,2);
     speedY = random(1,2);
-    r = random(255);
-    g = random(255);
-    b = random(255);
   }
   
   void bounce() {
@@ -64,29 +94,12 @@ class Ball {
     if(posY > height-diam/2 || posY < 0) {
       speedY = speedY*-1;
     }
-  }/*
-  
-  void link(Ball b2) {
-    strokeWeight(10);
-    stroke(126);
-    // distance between two balls
-    if(dist(posX, posY, b2.posX, b2.posY) < minDistance) {
-      line(posX, posY, b2.posX, b2.posY);
-    }
   }
-
-  void collect() {
-    if(mousePressed) {
-      if(dist(mouseX, mouseY, posX, posY) < 60) {
-      posX = mouseX;
-      posY = mouseY;
-      }
-    }
-  }*/
   
   void display() {
-    noStroke();
-    fill(r,g,b,140);
+    // noStroke();
+    
+    fill(defaultColor);
     circle(posX, posY, diam);
     fill(0);
     textAlign(CENTER);

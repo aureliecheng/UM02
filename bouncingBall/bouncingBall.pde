@@ -23,6 +23,7 @@ void draw() {
     for(int j=i+1 ; j<nbBalls ; j++) {
       balls[i].link(balls[j]);
     }
+  }
 }
 
 class Ball {
@@ -78,4 +79,5 @@ class Ball {
     fill(r,g,b,140);
     circle(posX,posY,diam);
   }
+  
 }
