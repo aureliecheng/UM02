@@ -3,15 +3,22 @@ StringList inventoryCharacters;
 FloatList inventoryScore;
 int nbBars = 20;
 Bar[] bars = new Bar[nbBars];
-float barWidth = 30;
-float space = 65;
+
+float graphWidth = width*0.7;
+float barWidth = graphWidth/(nbBars*2);
+float space = 2*barWidth;
 float yMax = -1;
+
 boolean showNames;
-color buttonHighlight = color(0);
+color defaultColor = color(108, 108, 108);
+color highlightColor = color(64, 64, 64);
+color buttonColor = defaultColor;
 
 void setup() {
+  graphWidth = width*0.7;
+  barWidth = graphWidth/(nbBars*2);
+  space = 2*barWidth;
   fullScreen();
-  background(255);
   loadData();
   float x = width*0.1 - barWidth;
   float h;
@@ -22,7 +29,7 @@ void setup() {
     h = inventoryScore.get(i)*(height*0.8-height*0.1)/yMax;
     name = inventoryCharacters.get(i);
     score = inventoryScore.get(i);
-    bars[i] = new Bar(x, h, name, score);
+    bars[i] = new Bar(i * space + width*0.1, h, name, score);
   }
 }
 
@@ -44,63 +51,64 @@ void loadData() {
 }
 
 void draw() {
-  background(255);
+  background(237, 237, 237);
   drawButtons();
   drawAxes();
   for(int i=0; i<inventoryScore.size(); i++) {
     // If show name button is selected
     if(showNames) {
-      // Change color when rollover bar + Display the name associated to the bar
-      bars[i].displayName();
+      // Change color when rollover bar + Display the name and score associated to the bar
+      bars[i].displayDetails();
     }
     bars[i].drawBars();
   }
 }
+// -------------------------- AXES --------------------------
 
 void drawAxes() {
-  stroke(0);
+  stroke(defaultColor);
   strokeWeight(4);
-  fill(0);
-  // Draw x axe
+  fill(defaultColor);
+  // X axe
   line(width*0.1, height*0.8, width*0.8, height*0.8);
   triangle(width*0.8, height*0.8-10, width*0.8+10, height*0.8, width*0.8, height*0.8+10);
-  // Draw y axe
+  // Y axe
   line(width*0.1, height*0.8, width*0.1, height*0.1);
   triangle(width*0.1-10, height*0.1, width*0.1, height*0.1-10, width*0.1+10, height*0.1);
-  // ###############TO DO ADD LABELS##################
   text("0", width*0.1-20, height*0.8);
-  text("5", width*0.1-20, height*0.8-5*(height*0.8-height*0.1)/yMax);
+  /*text("5", width*0.1-20, height*0.8-5*(height*0.8-height*0.1)/yMax);
   text("10", width*0.1-25, height*0.8-10*(height*0.8-height*0.1)/yMax);
-  text("15", width*0.1-25, height*0.8-15*(height*0.8-height*0.1)/yMax);
+  text("15", width*0.1-25, height*0.8-15*(height*0.8-height*0.1)/yMax); */
 }
 
+// -------------------------- BUTTONS --------------------------
+
 void drawButtons() {
-  stroke(buttonHighlight);
+  strokeWeight(2);
+  stroke(buttonColor);
   noFill();
-  rect(width*0.85, height*0.3, 120, 40);
-  fill(0);
+  rect(width*0.87, height*0.3, 120, 40);
+  fill(buttonColor);
   textSize(16);
-  // Button to reveal the name of the character behind a bar
-  text("Show name", width*0.85+20, height*0.3+25);
+  // Button to reveal the name of the character of a bar
+  text("Show details", width*0.87+15, height*0.3+25);
 }
 
 void mousePressed() {
   // Button show characters
-  if(rectOver(width*0.85, height*0.3, 120, 40)){
+  if(buttonOver(width*0.85, height*0.3, 120, 40)){
     if(showNames) {
       showNames = false;
-      buttonHighlight = color(0);
+      buttonColor = defaultColor;
     }
     else {
       showNames = true;
-      buttonHighlight = color(128,128,128);
+      buttonColor = highlightColor;
     }
   }
-  // Button score
-  
 }
 
-boolean rectOver(float x, float y, float w, float h) {
+boolean buttonOver(float x, float y, float w, float h) {
   if (mouseX >= x && mouseX <= x+w && mouseY >= y && mouseY <= y+h) {
     return true;
   } 
@@ -108,6 +116,8 @@ boolean rectOver(float x, float y, float w, float h) {
     return false;
   }  
 }
+
+// -------------------------- BARS --------------------------
 
 class Bar {
   color barColor;
@@ -117,7 +127,7 @@ class Bar {
   float score;
   
   Bar(float x, float h, String n, float s) {
-    barColor = 0;
+    barColor = defaultColor;
     xBar = x;
     barHeight = h;
     name = n;
@@ -139,28 +149,22 @@ class Bar {
     rect(xBar, height*0.8, barWidth, -barHeight);
   }
   
-  void displayName() {
+  void displayDetails() {
     if (barOver(xBar, height*0.8, barWidth, barHeight)) {
-      barColor = color(128,128,128);
-      fill(128,128,128);
+      barColor = highlightColor;
       scoreLine();
       text(name, width*0.85-180, height*0.8-barHeight-10);
     }
     else {
-      barColor = color(0);
+      barColor = defaultColor;
     }
   }
   
   void scoreLine() {
     strokeWeight(2);
-    stroke(128,128,128);
+    stroke(highlightColor);
     line(width*0.1-90, height*0.8-barHeight+1, width*0.85, height*0.8-barHeight+1);
+    fill(highlightColor);
     text(score, width*0.1-90, height*0.8-barHeight-10);
   }
 }
-
-/*
-void showScores() {
-
-
-}*/
