@@ -10,8 +10,8 @@ class Data {
   // Scaling
   float startGraphX = width*0.3;
   float startGraphY = height*0.2;
-  float graphWidth = width*0.8-width*0.2; // 20% margin left and right
-  float graphHeight = height*0.8-height*0.2;
+  float graphWidth = width/2;
+  float graphHeight = height/2;
   float barHeight;
   float space;
   
