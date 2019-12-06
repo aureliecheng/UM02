@@ -1,20 +1,23 @@
 class Bars {
-  float xPos; 
+  float xPos = 0; 
   float yPos;
   float barWidth;
-  float barHeight = 20; // TO DO - CALCUL
-  float graphWidth = width*0.8-width*0.2;
+  float barHeight;
   
-  Bars(float x, float y, float w) {
+  Bars(float x, float y, float w, float h) {
     xPos = x;
     yPos = y;
     barWidth = w;
+    barHeight = h;
   }
+  
   void displayBars() {
     noStroke();
     fill(255);
-    rect(xPos, yPos, barWidth, barHeight);
-    
+    rect(xPos, yPos, barWidth, barHeight); 
   }
+  
+  
+  
   
 }
