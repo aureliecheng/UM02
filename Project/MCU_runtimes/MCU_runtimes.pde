@@ -1,31 +1,37 @@
+////////////TO DO////////////////////
+/*
+ * Scale text title, headline, names
+ * Total bar
+*/
+
 Data data;
 Axes axes;
-Bars bars;
-MovieLabel movieLabel;
-int maxNameLength;
 
 void setup() {
   fullScreen();
+  //size(1000,600);
   data = new Data();
   data.loadData();
-  //axes = new Axes(maxNameLength);
+  axes = new Axes();
 }
 
 void draw() {
   background(0);
- 
+  fill(255);
   displayHeadline();
   displayTitle();
-  //axes.drawAxes();
+  axes.drawAxes();
   for(int i=0; i<data.dataLength; i++) {
     // Movie name
     data.movieLabel[i].displayName();
     // Bars
     data.bars[i].displayBars();
+    data.bars[i].displayRuntime();
   }
   
 }
   
+
 void displayHeadline(){
   textSize(30);
   textAlign(CENTER);
