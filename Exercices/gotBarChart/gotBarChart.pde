@@ -8,7 +8,7 @@ float barWidth = graphWidth/(nbBars*2);
 float space = 2*barWidth;
 float yMax = -1;
 boolean showNames;
-color defaultColor = color(108, 108, 108);
+color defaultColor = color(128, 128, 128);
 color highlightColor = color(64, 64, 64);
 color buttonColor = defaultColor;
 
@@ -67,7 +67,9 @@ void draw() {
 void displayTitle() {
   textSize(40);
   textAlign(CENTER);
-  text("Who are the main characters of Game of Thrones?", width*0.5, height*0.1+30); 
+  text("Who are the main characters of Game of Thrones?", width*0.5, height*0.1+30);
+  textSize(28);
+  text("Scores calculated with the relationship between each characters according to the books (source from UM02)", width*0.5, height*0.17);
 }
 
 // -------------------------- AXES --------------------------
@@ -94,17 +96,17 @@ void drawButtons() {
   strokeWeight(2);
   stroke(buttonColor);
   noFill();
-  rect(width*0.87, height*0.3, 120, 40);
+  rect(width*0.15, height*0.9, 120, 40);
   fill(buttonColor);
-  textAlign(LEFT);
   textSize(16);
   // Button to reveal the name of the character of a bar
-  text("Show details", width*0.87+15, height*0.3+25);
+  textAlign(CENTER, CENTER);
+  text("Show details", width*0.15+60, height*0.9+20);
 }
 
 void mousePressed() {
   // Button show characters
-  if(buttonOver(width*0.85, height*0.3, 120, 40)){
+  if(buttonOver(width*0.15, height*0.9, 120, 40)){
     if(showNames) {
       showNames = false;
       buttonColor = defaultColor;
@@ -161,7 +163,8 @@ class Bar {
     if (barOver(xBar, height*0.8, barWidth, barHeight)) {
       barColor = highlightColor;
       scoreLine();
-      text(name, width*0.85-180, height*0.8-barHeight-10);
+      textAlign(LEFT);
+      text(name, width*0.85, height*0.8-barHeight-10);
     }
     else {
       barColor = defaultColor;
