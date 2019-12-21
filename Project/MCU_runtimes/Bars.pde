@@ -4,7 +4,7 @@ class Bars {
   float barWidth;
   float barHeight;
   float runtime;
-  color highlightColor = color(100);
+  color highlightColor = color(122, 118, 142);
   color defaultColor = color(255);
   color barColor;
   
@@ -29,8 +29,10 @@ class Bars {
   void displayRuntime() {
     if (barOver(xPos, yPos, barWidth, barHeight)) {
       barColor = highlightColor;
-      textAlign(LEFT);
-      text(runtime, xPos+barWidth, yPos+barHeight);
+      textSize(18);
+      fill(255);
+      textAlign(RIGHT, BOTTOM);
+      text(int(runtime) + " min", xPos+barWidth-2, yPos+barHeight);
     }
     else {
       barColor = defaultColor;

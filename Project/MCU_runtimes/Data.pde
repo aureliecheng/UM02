@@ -20,8 +20,7 @@ class Data {
   void loadData() {
     String movie;
     int runtime;
-    table = loadTable("MCU_runtimes2.csv", "header");
-    // --------------------------CONDITION ORDRE TO DO
+    table = loadTable("MCU_runtimes.csv", "header");
     table.sort("Chronological_order");
     inventoryMoviesName = new StringList();
     inventoryRuntimes = new IntList();
@@ -47,7 +46,7 @@ class Data {
     barHeight = graphHeight/(dataLength*2)+10;
     space = barHeight*2-10;
     // Create
-    movieLabel = new MovieLabel[dataLength]; //+1 for total runtime
+    movieLabel = new MovieLabel[dataLength];
     bars = new Bars[dataLength];
     createMoviesLabels();
     createBars();
@@ -79,7 +78,8 @@ class Data {
     for(int i=0 ; i<inventoryRuntimes.size() ; i++) {
       total += inventoryRuntimes.get(i); 
     }
-    inventoryMoviesName.append("Total");
-    inventoryRuntimes.append(total);
+    textAlign(RIGHT, TOP);
+    textSize(20);
+    text("TOTAL: " + total, startGraphX, height*0.95);
   }
 }

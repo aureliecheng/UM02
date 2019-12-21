@@ -1,7 +1,7 @@
 ////////////TO DO////////////////////
 /*
  * Scale text title, headline, names
- * Total bar
+ * Display  total
 */
 
 Data data;
@@ -16,7 +16,7 @@ void setup() {
 }
 
 void draw() {
-  background(0);
+  background(11, 9, 48);
   fill(255);
   displayHeadline();
   displayTitle();
@@ -28,18 +28,17 @@ void draw() {
     data.bars[i].displayBars();
     data.bars[i].displayRuntime();
   }
-  
+  data.totalRuntime();
 }
-  
 
 void displayHeadline(){
-  textSize(30);
+  textSize(34);
   textAlign(CENTER);
-  text("Marvel Marathon – How long would it take to watch all the Marvel movies?", width*0.5, height*0.1); 
+  text("How long is the Marvel MCU Marathon?", width*0.5, height*0.1); 
 }
 
 void displayTitle(){
   textSize(20);
   textAlign(CENTER);
-  text("Total runtime of all Marvel movies in the MCU “Infinity Saga” (source from Wikipedia)", width*0.5, height*0.1+30); 
+  text("Total runtime of all Marvel movies in the MCU “Infinity Saga” (source from Wikipedia). Timeline in chronological order.", width*0.5, height*0.1+30); 
 }
