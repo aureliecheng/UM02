@@ -24,17 +24,22 @@ void draw() {
   for(int i=0; i<data.dataLength; i++) {
     // Movie name
     data.movieLabel[i].displayName();
-    // Bars
-    data.bars[i].displayBars();
-    data.bars[i].displayRuntime();
+    // plot
+    data.plot[i].displayPlots();
+    data.plot[i].displayRuntime();
   }
-  data.totalRuntime();
+}
+
+void mousePressed() {
+  for(int i=0; i<data.dataLength; i++) {
+    data.movieLabel[i].clicked();
+  }
 }
 
 void displayHeadline(){
   textSize(34);
   textAlign(CENTER);
-  text("How long is the Marvel MCU Marathon?", width*0.5, height*0.1); 
+  text("How long is the Marvel Marathon?", width*0.5, height*0.1); 
 }
 
 void displayTitle(){

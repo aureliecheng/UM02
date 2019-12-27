@@ -7,7 +7,7 @@ class Data {
   int runtimeMax = -1;
   int dataLength;
   MovieLabel[] movieLabel;
-  Bars[] bars;
+  Plot[] plot;
   // Scaling
   float startGraphX = width*0.4;
   float startGraphY = height*0.18;
@@ -32,7 +32,6 @@ class Data {
     }
     inventoryMoviesName.remove(0);
     inventoryRuntimes.remove(0);
-    //totalRuntime();
     dataLength = inventoryMoviesName.size();
     // Get the length of the longest movie's name
     for(int i = 0 ; i<dataLength ; i++) {
@@ -47,9 +46,9 @@ class Data {
     space = barHeight*2-10;
     // Create
     movieLabel = new MovieLabel[dataLength];
-    bars = new Bars[dataLength];
+    plot = new Plot[dataLength];
     createMoviesLabels();
-    createBars();
+    createPlots();
   }
   
   void createMoviesLabels() {
@@ -63,23 +62,13 @@ class Data {
     }
   }
   
-  void createBars() {
-    float barWidth;
+  void createPlots() {
     float y = startGraphY;
     for(int i=0 ; i<dataLength ; i++) {
-      barWidth = graphWidth*inventoryRuntimes.get(i)/runtimeMax;
-      bars[i] = new Bars(x, y, barWidth, barHeight, inventoryRuntimes.get(i));
+      x = startGraphX+graphWidth*inventoryRuntimes.get(i)/runtimeMax-graphWidth*50/runtimeMax;
+      plot[i] = new Plot(x, y, inventoryRuntimes.get(i));
       y = y + space;
     }
   }
   
-  void totalRuntime() {
-    int total = 0;
-    for(int i=0 ; i<inventoryRuntimes.size() ; i++) {
-      total += inventoryRuntimes.get(i); 
-    }
-    textAlign(RIGHT, TOP);
-    textSize(20);
-    text("TOTAL: " + total, startGraphX, height*0.95);
-  }
 }
