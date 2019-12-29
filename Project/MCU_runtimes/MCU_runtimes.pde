@@ -1,18 +1,16 @@
-////////////TO DO////////////////////
-/*
- * Scale text title, headline, names
- * Display  total
-*/
-
 Data data;
 Axes axes;
+MovieLabel movieLabel;
+Total total;
+color selectColor = color(122, 118, 142);
+color defaultColor = color(255);
 
 void setup() {
   fullScreen();
-  //size(1000,600);
   data = new Data();
   data.loadData();
   axes = new Axes();
+  total = new Total();
 }
 
 void draw() {
@@ -28,11 +26,19 @@ void draw() {
     data.plot[i].displayPlots();
     data.plot[i].displayRuntime();
   }
-}
-
-void mousePressed() {
-  for(int i=0; i<data.dataLength; i++) {
-    data.movieLabel[i].clicked();
+  total.displayTotalRuntime(0);
+  if(mousePressed) {
+    for(int i=0; i<data.dataLength; i++) {
+      if (data.movieLabel[i].labelOver(mouseX, mouseY)) {
+        data.movieLabel[i].isClicked = !data.movieLabel[i].isClicked;
+        if (data.movieLabel[i].isClicked) {
+          total.displayTotalRuntime(data.movieLabel[i].runtime); 
+        }
+        else {
+          total.displayTotalRuntime(-data.movieLabel[i].runtime);
+        }
+      }
+    }
   }
 }
 

@@ -16,6 +16,9 @@ class Data {
   float barHeight;
   float space;
   float x = startGraphX+20;
+  color selectColor = color(122, 118, 142);
+  color defaultColor = color(255);
+  color currentColor = defaultColor;
   
   void loadData() {
     String movie;
@@ -55,9 +58,11 @@ class Data {
     float x = startGraphX;
     float y = startGraphY;
     String name;
+    int runtime;
     for(int i=0 ; i<dataLength; i++) {
       name = inventoryMoviesName.get(i);
-      movieLabel[i] = new MovieLabel(x, y, name);
+      runtime = inventoryRuntimes.get(i);
+      movieLabel[i] = new MovieLabel(x, y, name, currentColor, false, runtime);
       y = y + space;
     }
   }

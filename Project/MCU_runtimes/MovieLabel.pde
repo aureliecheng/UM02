@@ -6,16 +6,21 @@ class MovieLabel {
   color defaultColor = color(255);
   color currentColor;
   float startGraphX = data.startGraphX;
+  boolean isClicked;
+  int runtime;
+  int total = 0;
   
-  MovieLabel(float x, float y, String name) {
+  MovieLabel(float x, float y, String name, color c, boolean f, int r) {
     xPos = x;
     yPos = y;
     label = name;
-    currentColor = defaultColor;
+    currentColor = c;
+    isClicked = f;
+    runtime = r;
   }
   
-  boolean labelOver(float x, float y, float w, float h) {
-    if (mouseX >= x && mouseX <= x+w && mouseY >= y && mouseY <= y+h) {
+  boolean labelOver(float mouseX, float mouseY) {
+    if (mouseX >= xPos-textWidth(label) && mouseX <= xPos+textWidth(label) && mouseY >= yPos && mouseY <= yPos+20) {
       return true;
     } 
     else {
@@ -23,21 +28,10 @@ class MovieLabel {
     }  
   }
   
-  void clicked() {
-    if (labelOver(startGraphX-textWidth(label), yPos, textWidth(label), 20)) {
-      if (currentColor == selectColor) {
-        currentColor = defaultColor;
-      }
-      else {
-        currentColor = selectColor;
-      }
-    }
-  }
- 
   void displayName() {
     textAlign(RIGHT, CENTER);
     textSize(20);
-    if (labelOver(xPos-textWidth(label), yPos,textWidth(label), 20)) {
+    if (labelOver(mouseX, mouseY) || isClicked) {
       currentColor = selectColor;
     }
     else {
