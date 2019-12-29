@@ -2,6 +2,7 @@ class Plot {
   float xPos; 
   float yPos;
   float runtime;
+  color backgroundColor = color(11, 9, 48);
   color highlightColor = color(122, 118, 142);
   color defaultColor = color(255);
   color plotColor;
@@ -26,10 +27,10 @@ class Plot {
   void displayRuntime() {
     if (plotOver(xPos, yPos, diam/2)) {
       plotColor = highlightColor;
-      fill(11, 9, 48);
+      fill(backgroundColor);
       rect(xPos+diam/2+10, yPos-10, 85, 20);
       textSize(18);
-      fill(255);
+      fill(highlightColor);
       textAlign(CENTER, BOTTOM);
       text(int(runtime) + " min", xPos+diam*2+22, yPos+diam/2+5);
     }

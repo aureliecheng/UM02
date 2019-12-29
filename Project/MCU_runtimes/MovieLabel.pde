@@ -20,7 +20,7 @@ class MovieLabel {
   }
   
   boolean labelOver(float mouseX, float mouseY) {
-    if (mouseX >= xPos-textWidth(label) && mouseX <= xPos+textWidth(label) && mouseY >= yPos && mouseY <= yPos+20) {
+    if (mouseX >= xPos-textWidth(label) && mouseX <= xPos && mouseY >= yPos && mouseY <= yPos+20) {
       return true;
     } 
     else {

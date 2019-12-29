@@ -27,6 +27,7 @@ void draw() {
     data.plot[i].displayRuntime();
   }
   total.displayTotalRuntime(0);
+  // Select movie names to display cumulative runtimes
   if(mousePressed) {
     for(int i=0; i<data.dataLength; i++) {
       if (data.movieLabel[i].labelOver(mouseX, mouseY)) {

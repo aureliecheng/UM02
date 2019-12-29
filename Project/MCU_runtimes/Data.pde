@@ -5,6 +5,7 @@ class Data {
   Axes axes;
   float maxNameWidth = -1;
   int runtimeMax = -1;
+  int totalRuntime = 0;
   int dataLength;
   MovieLabel[] movieLabel;
   Plot[] plot;
@@ -32,6 +33,7 @@ class Data {
       inventoryMoviesName.append(movie);
       runtime = row.getInt("Runtime_min");
       inventoryRuntimes.append(runtime);
+      totalRuntime += runtime;
     }
     inventoryMoviesName.remove(0);
     inventoryRuntimes.remove(0);
