@@ -4,11 +4,13 @@ MovieLabel movieLabel;
 Total total;
 color selectColor = color(122, 118, 142);
 color defaultColor = color(255);
+IntList movieSelected;
 
 void setup() {
   fullScreen();
   data = new Data();
   data.loadData();
+  movieSelected = new IntList();
   axes = new Axes();
   total = new Total();
 }
@@ -27,17 +29,17 @@ void draw() {
     data.plot[i].displayRuntime();
   }
   total.displayTotalRuntime(0);
-  // Select movie names to display cumulative runtimes
-  if(mousePressed) {
-    for(int i=0; i<data.dataLength; i++) {
-      if (data.movieLabel[i].labelOver(mouseX, mouseY)) {
-        data.movieLabel[i].isClicked = !data.movieLabel[i].isClicked;
-        if (data.movieLabel[i].isClicked) {
-          total.displayTotalRuntime(data.movieLabel[i].runtime); 
-        }
-        else {
-          total.displayTotalRuntime(-data.movieLabel[i].runtime);
-        }
+}
+
+void mouseClicked() {
+  for(int i=0 ; i<data.dataLength; i++) {
+    if(data.movieLabel[i].labelOver()) {
+      data.movieLabel[i].isClicked = !data.movieLabel[i].isClicked;
+      if(data.movieLabel[i].isClicked){
+        total.displayTotalRuntime(data.movieLabel[i].runtime); 
+      }
+      else {
+        total.displayTotalRuntime(-data.movieLabel[i].runtime);
       }
     }
   }

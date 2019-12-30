@@ -8,18 +8,17 @@ class MovieLabel {
   float startGraphX = data.startGraphX;
   boolean isClicked;
   int runtime;
-  int total = 0;
   
-  MovieLabel(float x, float y, String name, color c, boolean f, int r) {
+  MovieLabel(float x, float y, String name, color c, int r) {
     xPos = x;
     yPos = y;
     label = name;
     currentColor = c;
-    isClicked = f;
+    isClicked = false;
     runtime = r;
   }
   
-  boolean labelOver(float mouseX, float mouseY) {
+  boolean labelOver() {
     if (mouseX >= xPos-textWidth(label) && mouseX <= xPos && mouseY >= yPos && mouseY <= yPos+20) {
       return true;
     } 
@@ -31,7 +30,7 @@ class MovieLabel {
   void displayName() {
     textAlign(RIGHT, CENTER);
     textSize(20);
-    if (labelOver(mouseX, mouseY) || isClicked) {
+    if (labelOver() || isClicked) {
       currentColor = selectColor;
     }
     else {

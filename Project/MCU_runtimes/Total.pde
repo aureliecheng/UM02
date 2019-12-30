@@ -10,5 +10,4 @@ class Total {
     textAlign(LEFT, CENTER);
     text(total+"/"+data.totalRuntime+" min", width*0.4+10, height*0.94);
   }
-
 }

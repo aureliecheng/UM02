@@ -64,7 +64,7 @@ class Data {
     for(int i=0 ; i<dataLength; i++) {
       name = inventoryMoviesName.get(i);
       runtime = inventoryRuntimes.get(i);
-      movieLabel[i] = new MovieLabel(x, y, name, currentColor, false, runtime);
+      movieLabel[i] = new MovieLabel(x, y, name, currentColor, runtime);
       y = y + space;
     }
   }
