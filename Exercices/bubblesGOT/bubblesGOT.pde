@@ -42,8 +42,6 @@ void loadData() {
     buttons[i] = new Buttons(familyNames[i], width*0.05, heightButton, 150, 40, defaultColor);
     heightButton += 50;
   }
-  
-  
 }
 
 void draw() {
