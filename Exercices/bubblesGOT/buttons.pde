@@ -2,8 +2,9 @@ class Buttons {
   String familyName;
   float xPos, yPos, rectWidth, rectHeight;
   color currentColor;
-  color defaultColor = #e0e2e1;
+  color defaultColor = #a5abaf;
   boolean isClicked;
+  
   Buttons(String name, float x, float y, float w, float h, color c) {
     familyName = name;
     xPos = x;
@@ -13,6 +14,7 @@ class Buttons {
     currentColor = c;
     isClicked = false;
   }
+  
   void selectButton() {
     if(buttonOver()){
       isClicked = !isClicked;
@@ -26,40 +28,13 @@ class Buttons {
     else {
       currentColor = defaultColor;
     }
+    stroke(currentColor);
     fill(currentColor);
     rect(xPos, yPos, rectWidth, rectHeight);
     fill(255);
     textSize(24);
     textAlign(CENTER, CENTER);
     text(familyName, xPos+rectWidth/2, yPos+rectHeight/2);
-  }
-  
-  color getColor(String name) {
-    color famColor;
-    switch(name) {
-      case "Lannister":
-        famColor = #930416;
-        break;
-      case "Targaryen":
-        famColor = #000000;
-        break;
-      case "Stark":
-        famColor = #8d8d8d;
-        break;
-      case "Baratheon":
-        famColor = #513f3f;
-        break;
-      case "Tyrell":
-        famColor = #9ecea4;
-        break;
-      case "Martell":
-        famColor = #c159ad;
-        break;
-      default:
-        famColor = #e0e2e1;
-        break;
-    }
-    return famColor;
   }
   
   boolean buttonOver(){

@@ -5,8 +5,9 @@ int limit = 20;
 color currentColor;
 color isClicked = color(205,92,92);
 color notClicked = color(178,34,34);
-color defaultColor = #e0e2e1;
-String[] familyNames = {"Lannister","Targaryen","Stark","Baratheon","Tyrell","Martell"}; 
+color defaultColor = #a5abaf;
+String[] familyNames = {"Lannister","Targaryen","Stark","Baratheon","Tyrell","Martell", "Snow"}; 
+ArrayList<String> familySelected = new ArrayList<String>();
 
 void setup() {
   fullScreen();
@@ -18,7 +19,7 @@ void loadData() {
   // Sort the table into score order
   table.sortReverse("score");
   // Array of Ball objects = total number of rows in the CSV but here I chose the first 20 scores
-  balls = new Ball[limit]; 
+  balls = new Ball[limit];
   String fam_name;
   // Iterate on the first 20 rows
   for(int i=0; i<limit; i++) {
@@ -56,6 +57,7 @@ void draw() {
       cursor(ARROW);
     }
   }
+  stroke(0);
   line(2*width*0.05+150, 0, 2*width*0.05+150, height);  
   for(Ball b: balls) {
     b.display();
@@ -66,6 +68,12 @@ void draw() {
 void mouseClicked(){
   for(Buttons b: buttons) {
     b.selectButton();
+    if(b.isClicked) {
+      familySelected.add(b.familyName);
+    }
+    else {
+      familySelected.remove(b.familyName);
+    }
   }
 }
 
@@ -101,9 +109,16 @@ class Ball {
   }
   
   void display() {
-    fill(defaultColor);
+    if(familySelected.contains(fam_name)) {
+      currentColor = getColor(fam_name);
+    }
+    else {
+      currentColor = defaultColor;
+    }
+    stroke(currentColor);
+    fill(currentColor);
     circle(posX, posY, diam);
-    fill(0);
+    fill(255);
     textSize(18);
     textAlign(CENTER, CENTER);
     text(first_name, posX, posY-10);
