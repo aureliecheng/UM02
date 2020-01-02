@@ -2,8 +2,6 @@
     float xPos;
     float yPos;
     String label;
-    color selectColor = color(122, 118, 142);
-    color defaultColor = color(255);
     color currentColor;
     boolean isClicked;
     int runtime;

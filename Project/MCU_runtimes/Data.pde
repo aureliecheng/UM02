@@ -10,7 +10,7 @@
     MovieLabel[] movieLabel;
     Plot[] plot;
     // Scaling
-    float startGraphX = width*0.4;
+    float startGraphX = width*0.42;
     float startGraphY = height*0.18;
     float graphWidth = width/2;
     float graphHeight = height/2;

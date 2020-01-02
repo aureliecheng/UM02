@@ -2,8 +2,8 @@
   Axes axes;
   MovieLabel movieLabel;
   Total total;
-  color selectColor = color(122, 118, 142);
-  color defaultColor = color(255);
+  color selectColor = #7d8993;
+  color defaultColor = #f2f2f2;
   IntList movieSelected;
   
   void setup() {
@@ -16,7 +16,10 @@
   }
   
   void draw() {
-    background(11, 9, 48);
+    PImage img;
+    img = loadImage("thumb-1920-569366.jpg");
+    background(img);
+    //background(11, 9, 48);
     fill(255);
     displayHeadline();
     displayTitle();
