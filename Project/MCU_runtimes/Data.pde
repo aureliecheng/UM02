@@ -14,9 +14,7 @@
     float startGraphY = height*0.18;
     float graphWidth = width/2;
     float graphHeight = height/2;
-    float barHeight;
     float space;
-    float x = startGraphX+20;
     // Colors
     color selectColor = color(122, 118, 142);
     color defaultColor = color(255);
@@ -48,8 +46,8 @@
       // Find the longest runtime
       runtimeMax = inventoryRuntimes.max();
       // Scaling
-      barHeight = graphHeight/(dataLength*2)+10;
-      space = barHeight*2-10;
+      space = graphHeight/(dataLength*2)+10;
+      space = space*2-10;
       // Create
       movieLabel = new MovieLabel[dataLength];
       plot = new Plot[dataLength];
@@ -73,7 +71,7 @@
     void createPlots() {
       float y = startGraphY;
       for(int i=0 ; i<dataLength ; i++) {
-        x = startGraphX+graphWidth*inventoryRuntimes.get(i)/runtimeMax-graphWidth*50/runtimeMax;
+        float x = startGraphX+graphWidth*inventoryRuntimes.get(i)/runtimeMax-graphWidth*50/runtimeMax;
         plot[i] = new Plot(x, y, inventoryRuntimes.get(i));
         y = y + space;
       }

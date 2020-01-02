@@ -42,6 +42,6 @@
     void displayPlots() {
       noStroke();
       fill(plotColor);
-      circle(xPos, yPos, diam);
+      circle(xPos, yPos+2, diam);
     }
   }

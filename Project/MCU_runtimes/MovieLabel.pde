@@ -5,7 +5,6 @@
     color selectColor = color(122, 118, 142);
     color defaultColor = color(255);
     color currentColor;
-    float startGraphX = data.startGraphX;
     boolean isClicked;
     int runtime;
     
