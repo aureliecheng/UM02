@@ -12,4 +12,3 @@
 5. Mapbox - Point of interests: Western restaurants in Shanghai
 6. Real estate - data viz with Python
 7. MovingMan - JavaScript Available @ https://chengaur.github.io/)
-7. D3.js tuto - Let's make a bar chart from https://bost.ocks.org/mike/bar/ Available @ https://chengaur.github.io/
